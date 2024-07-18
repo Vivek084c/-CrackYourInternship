@@ -35,3 +35,29 @@ public:
         }
     }
 };
+
+//question -3
+// 121. Best Time to Buy and Sell Stock
+
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int max_profit = 0;
+        int buy=0;
+        int sell=1;
+        while (sell < prices.size()){
+            if (prices[buy]<prices[sell]){
+                int assumesProfit = prices[sell] - prices[buy];
+                if (assumesProfit>max_profit){
+                    max_profit = assumesProfit;
+                }
+            }
+            else{
+                buy=sell;
+            }
+            sell++;
+        }
+        return max_profit;
+
+    }
+};
