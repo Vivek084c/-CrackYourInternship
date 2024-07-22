@@ -147,3 +147,40 @@ public:
 
     }
 };
+
+
+
+// Convert Binary number in a linked list to integer
+
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    int getDecimalValue(ListNode* head) {
+        ListNode* cur = head;
+        ListNode* prev = NULL;
+        while (cur != nullptr){
+            ListNode* temp = cur->next;
+            cur->next = prev;
+            prev = cur;
+            cur = temp;
+        }
+        // the new reversed linked list has its head at prev
+        double ans=0;
+        int c=0;
+        while (prev != nullptr){
+            ans = ans + (pow(2,c++) * (prev->val));
+            prev = prev->next;
+        }
+        return ans;
+    }
+};
