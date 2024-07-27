@@ -66,3 +66,43 @@ public:
 
         slow->next= slow->next->next;
         return head;
+
+
+// 86. Partition List
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* partition(ListNode* head, int x) {
+        ListNode* left = new ListNode(0);
+        ListNode* rigth = new ListNode(0);
+        ListNode* l = left;
+        ListNode* r = rigth;
+    
+        while (head != nullptr){
+            if (head->val < x){
+                l->next = head;
+                l = l->next;
+            }
+            else{
+                r->next = head;
+                r = r->next;
+            }
+            head = head->next;
+        }
+        l->next = rigth->next;
+        r->next = nullptr;
+
+        return left->next;
+    }
+
+};
